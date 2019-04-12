@@ -18,4 +18,9 @@ public class GreetingController {
     public String test() {
         return "test";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }
