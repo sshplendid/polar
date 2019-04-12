@@ -7,4 +7,10 @@
  * in the user manual at https://docs.gradle.org/5.2.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'polar'
+rootProject.name = "polar"
+
+include (
+        ":orca",
+        ":adelie",
+        ":bluewhale"
+)

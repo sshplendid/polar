@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: "/orca"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
