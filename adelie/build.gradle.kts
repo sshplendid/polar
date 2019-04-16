@@ -15,7 +15,9 @@ dependencies {
     compile("org.springframework.session:spring-session-data-redis")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("com.google.code.gson:gson:2.8.5")
     compileOnly("org.projectlombok:lombok:1.18.6")
+
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
