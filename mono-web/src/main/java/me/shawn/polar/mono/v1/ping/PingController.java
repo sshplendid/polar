@@ -1,4 +1,4 @@
-package me.shawn.polar.mono.ping;
+package me.shawn.polar.mono.v1.ping;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +20,10 @@ public class PingController {
     @GetMapping("/profile")
     public String checkProfile() {
         return String.format("Profile of this application: '%s'", profiles);
+    }
+
+    @GetMapping("/primitive")
+    public long checkPrimitive() {
+        return 365;
     }
 }

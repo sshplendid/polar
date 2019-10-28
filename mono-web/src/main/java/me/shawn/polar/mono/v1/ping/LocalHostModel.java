@@ -1,4 +1,4 @@
-package me.shawn.polar.mono.ping;
+package me.shawn.polar.mono.v1.ping;
 
 import lombok.*;
 

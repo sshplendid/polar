@@ -1,4 +1,4 @@
-package me.shawn.polar.mono.ping;
+package me.shawn.polar.mono.v1.ping;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,4 +46,5 @@ class PingControllerTest {
                 .andExpect(content().string(String.format("Profile of this application: '%s'", "local")))
                 .andExpect(status().isOk());
     }
+
 }
