@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: code-api
+  h2:
+    console:
+      enabled: true  # H2 웹 콘솔을 사용하겠다는 의미
+      path: /h2_db
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    schema: classpath:/scheme.sql
+---
+# FILE DB
+spring:
+  profiles: filedb
+  datasource:
+    driver-class-name: org.h2.Driver  #h2 드라이버 설정
+    url: jdbc:h2:file:~/app/data/codedb;AUTO_SERVER=TRUE  #접속 URL
+#    url: jdbc:h2:mem:testdb
+    username: sa  # 사용자 이름 (로그인 시 사용)
+    password: 1234  # 사용자 암호 (로그인 시 사용)
