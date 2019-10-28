@@ -1,25 +1,41 @@
 package me.shawn.polar.mono.model;
 
+import org.springframework.http.HttpStatus;
+
 import java.time.LocalDateTime;
 
 public class CommonResponseModel<T> {
-    private String status;
+    private HttpStatus status;
     private String message;
     private T data;
     private LocalDateTime requestAt;
 
-    public CommonResponseModel(String status, String message, T data) {
+    public CommonResponseModel(HttpStatus status, String message, T data) {
         this.status = status;
         this.message = message;
         this.data = data;
         this.requestAt = LocalDateTime.now();
     }
 
+    public String toJson() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "CommonResponseModel{" +
+                "status=" + status +
+                ", message='" + message + '\'' +
+                ", data=" + data.toString() +
+                ", requestAt=" + requestAt +
+                '}';
+    }
+
     public static CommonResponseModel.Builder builder() {
         return new Builder();
     }
 
-    public String getStatus() {
+    public HttpStatus getStatus() {
         return status;
     }
 
@@ -35,12 +51,12 @@ public class CommonResponseModel<T> {
         return requestAt;
     }
 
-    static class Builder<T> {
-        private String status;
+    public static class Builder<T> {
+        private HttpStatus status;
         private String message;
         private T data;
 
-        public Builder status(String status) {
+        public Builder status(HttpStatus status) {
             this.status = status;
             return this;
         }
