@@ -1,15 +1,12 @@
 # Common
+
 server:
   servlet:
     context-path: /mono
 
 spring:
   profiles:
-    active: dev
-
-polar:
-  env:
-    foo: common
+    active: local
 
 ---
 # Local
@@ -18,17 +15,9 @@ spring:
   profiles:
     - local
 
-polar:
-  env:
-    foo: local
-
 ---
 # dev
 
 spring:
   profiles:
     - dev
-
-polar:
-  env:
-    foo: dev
