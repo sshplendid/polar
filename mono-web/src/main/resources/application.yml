@@ -1,0 +1,23 @@
+# Common
+
+server:
+  servlet:
+    context-path: /mono
+
+spring:
+  profiles:
+    active: local
+
+---
+# Local
+
+spring:
+  profiles:
+    - local
+
+---
+# dev
+
+spring:
+  profiles:
+    - dev
