@@ -3,6 +3,28 @@
 <mapper namespace="me.shawn.polar.platform.code.CodeDao">
     <update id="saveCode"></update>
 
-    <select id="getCodesByGroupKeys" resultType="me.shawn.polar.platform.code.Code"></select>
+    <select id="getCodesByGroupKeys" resultType="code">
+        select
+              id
+              , group_key groupKey
+              , code_key codeKey
+              , code_value as codeValue
+              , sequence
+              , description
+              , selectable
+              , deleted
+              , filter_1 as filter1
+              , filter_2 as filter2
+              , filter_3 as filter3
+              , created_at as createdAt
+              , modified_at as modifiedAt
+        from CODE
+        where GROUP_KEY in (
+        <foreach collection="groupKeys" item="groupKey" separator=",">
+            #{groupKey}
+        </foreach>
+        )
+        order by group_Key, id
+    </select>
     <select id="getCodesByGroupKey" resultType="me.shawn.polar.platform.code.Code"></select>
 </mapper>

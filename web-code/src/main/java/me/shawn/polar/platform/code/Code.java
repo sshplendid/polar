@@ -6,9 +6,12 @@ import java.time.LocalDateTime;
 
 @Alias("code")
 public class Code {
+
+    private Long id;
     private String groupKey;
     private String codeKey;
     private String codeValue;
+    private Long sequence;
     private String description;
     private String[] filters;
     private boolean selectable;
@@ -16,19 +19,38 @@ public class Code {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-    public Code(String groupKey, String codeKey, String codeValue, String description, String[] filters) {
+    public Code() {
+    }
+
+    public Code(Long id, String groupKey, String codeKey, String codeValue, Long sequence, String description, String[] filters) {
+        this.id = id;
         this.groupKey = groupKey;
         this.codeKey = codeKey;
         this.codeValue = codeValue;
+        this.sequence = sequence;
         this.description = description;
         this.filters = filters;
         this.selectable = true;
         this.deleted = false;
         this.createdAt = LocalDateTime.now();
         this.modifiedAt = LocalDateTime.now();
-
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Long sequence) {
+        this.sequence = sequence;
+    }
     public String getGroupKey() {
         return groupKey;
     }

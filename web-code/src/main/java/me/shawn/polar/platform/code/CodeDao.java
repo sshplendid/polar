@@ -1,16 +1,15 @@
 package me.shawn.polar.platform.code;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
-@Profile("code-api")
-@Repository
+//@Profile("code-api")
+//@Repository
 @Mapper
 interface CodeDao {
-    List<Code> getCodesByGroupKeys(List<String> groupKeyList);
+    List<Code> getCodesByGroupKeys(Map<String, Object> params);
 
     List<Code> getCodesByGroupKey(String groupKey);
 
