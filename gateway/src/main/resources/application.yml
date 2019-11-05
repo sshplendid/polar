@@ -1,0 +1,11 @@
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: for_vue
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+server:
+  port: 80
