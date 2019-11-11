@@ -20,9 +20,15 @@ public class AuthViewController {
     @GetMapping("/login")
     public String loginView(HttpSession httpSession, Model model) {
         String sid = httpSession.getId();
-        AuthResultModel auth = authService.findAuthModelBySessionId(sid);
-        log.info("session id: {}", sid);
-        log.info("auth result: {}", auth.getId());
+        AuthResultModel auth;
+        try {
+            auth = (AuthResultModel) httpSession.getAttribute("userInfo");
+            log.info("session id: {}", sid);
+            log.info("auth result: {}", auth.getId());
+        } catch (Exception e) {
+            log.error("session user info is null.");
+            auth = AuthResultModel.NONE;
+        }
 
         model.addAttribute("auth", auth);
 

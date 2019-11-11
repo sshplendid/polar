@@ -5,7 +5,7 @@
     <title>로그인</title>
 </head>
 <body>
-    <div>
+    <div th:if="${auth.id == 'NONE'}">
         <h2>로그인</h2>
         <ul>
             <li>ID: <input type="text" title="id" /></li>
@@ -13,7 +13,7 @@
             <li><input id="loginBtn" type="button" value="로그인" /></li>
         </ul>
     </div>
-    <div id="loginResult">
+    <div id="loginResult" th:if="${auth.id != 'NONE'}">
         <h2>로그인 결과</h2>
         <ul>
             <li>로그인 ID: <span th:text="${auth.id}" id="loginResultId"></span></li>
@@ -38,7 +38,8 @@
                 body: JSON.stringify(requestbody)
             }).then(res => {
                 console.log('-> login result');
-                res.json(json => {
+                console.log(res);
+                res.json().then(json => {
                     console.log('  -> JSON result');
                     console.log(json);
                 });

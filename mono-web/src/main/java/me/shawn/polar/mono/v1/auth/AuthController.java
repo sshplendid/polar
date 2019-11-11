@@ -17,8 +17,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public AuthResultModel logIn(HttpSession httpSession, @RequestBody AuthLoginModel authLogin) throws IllegalAccessException {
-        AuthResultModel authResult = authService.authenticate(authLogin);
-        authResult.setSid(httpSession.getId());
+        String sid = httpSession.getId();
+        AuthResultModel authResult = authService.authenticate(sid, authLogin);
+        httpSession.setAttribute("userInfo", authResult);
 
         return authResult;
     }

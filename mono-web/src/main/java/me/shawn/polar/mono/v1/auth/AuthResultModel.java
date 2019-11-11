@@ -5,11 +5,12 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @RedisHash("authResult")
 @Data @Builder
-public class AuthResultModel {
+public class AuthResultModel implements Serializable {
     @Id
     private String sid;
     private String id;
