@@ -1,6 +1,7 @@
 package me.shawn.polar.mono.model;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,7 @@ class CommonResponseModelTest {
     @Test
     public void beanTest() {
         // GIVEN
-        String status = "SUCCESS";
+        HttpStatus status = HttpStatus.OK;
         String message = "JUnit test";
         String data = "This is secret data.";
         LocalDateTime beforeGenerate = LocalDateTime.now();
@@ -34,7 +35,7 @@ class CommonResponseModelTest {
     @Test
     public void builderTest() {
         // GIVEN
-        String status = "SUCCESS";
+        HttpStatus status = HttpStatus.OK;
         String message = "JUnit test";
         String data = "This is secret data.";
         LocalDateTime beforeGenerate = LocalDateTime.now();

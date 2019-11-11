@@ -11,3 +11,4 @@ rootProject.name = 'polar'
 
 include 'mono-web'
 include 'web-code'
+include 'gateway'

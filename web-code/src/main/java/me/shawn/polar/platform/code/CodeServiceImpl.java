@@ -3,7 +3,9 @@ package me.shawn.polar.platform.code;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Profile("code-api")
 @Service
@@ -16,8 +18,10 @@ public class CodeServiceImpl implements CodeService {
     }
 
     @Override
-    public List<Code> getCodesByGroupKeys(List<String> groupKeyList) {
-        return codeDao.getCodesByGroupKeys(groupKeyList);
+    public List<Code> getCodesByGroupKeys(List<String> groupKeys) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("groupKeys", groupKeys);
+        return codeDao.getCodesByGroupKeys(param);
     }
 
     @Override

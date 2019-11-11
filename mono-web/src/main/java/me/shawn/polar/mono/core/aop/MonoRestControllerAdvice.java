@@ -1,7 +1,10 @@
 package me.shawn.polar.mono.core.aop;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import me.shawn.polar.mono.model.CommonResponseModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,11 +14,16 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
+import java.util.IllegalFormatConversionException;
+
 @Slf4j
 @RestControllerAdvice
 public class MonoRestControllerAdvice implements ResponseBodyAdvice<Object> {
 
     public static final String SUCCESS = "SUCCESS";
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     public MonoRestControllerAdvice() {
         log.info("advice !!!");
@@ -38,9 +46,13 @@ public class MonoRestControllerAdvice implements ResponseBodyAdvice<Object> {
                 .data(body)
                 .build();
 
-        if("class java.lang.String".equals(returnType.getMethod().getReturnType().toString())) {
-            log.info("return type is String!");
-            return modifiedResponse.toJson();
+        if(body instanceof String) {
+            try {
+                return objectMapper.writeValueAsString(modifiedResponse);
+            } catch (JsonProcessingException e) {
+                log.error(e.getMessage());
+                throw new IllegalStateException(String.format("Failed to conversion String value '%s' to JSON string", body));
+            }
         }
         return modifiedResponse;
     }
