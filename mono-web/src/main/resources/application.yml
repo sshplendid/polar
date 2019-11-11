@@ -9,6 +9,15 @@ spring:
     active: local
 
 ---
+# Embeded redis
+spring:
+  profiles: embeded-redis
+  session:
+#    store-type: redis
+
+  redis:
+    port: 16379
+---
 # Local
 
 spring:
