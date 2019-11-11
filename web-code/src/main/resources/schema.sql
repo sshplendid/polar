@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS code_group;
 CREATE TABLE code_group(
-ID INT PRIMARY KEY
+ID number PRIMARY KEY
 , group_key VARCHAR(255)
 , group_value VARCHAR(255)
 , description VARCHAR(255)

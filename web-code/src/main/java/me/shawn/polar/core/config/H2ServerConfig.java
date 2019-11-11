@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 @Configuration
 public class H2ServerConfig {
@@ -18,6 +19,7 @@ public class H2ServerConfig {
     @Profile("inmemorydb")
     @Bean
     public Server h2TcpServer() throws SQLException {
+
         return Server.createTcpServer().start();
     }
 }
