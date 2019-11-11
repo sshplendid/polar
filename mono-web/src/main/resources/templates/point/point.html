@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>포인트 테스트</title>
+</head>
+<body>
+    <h1>포인트는?</h1>
+    <div>
+        <ul>
+            <li>ID: <span th:text="${point.id}"></span></li>
+            <li>point: <span th:text="${point.amount}"></span></li>
+            <li>변경일시: <span th:text="${point.refreshedAt}"></span></li>
+        </ul>
+    </div>
+</body>
+</html>
