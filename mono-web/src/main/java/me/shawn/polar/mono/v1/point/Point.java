@@ -14,6 +14,8 @@ public class Point {
     private String id;
     private Long amount;
     private LocalDateTime refreshedAt;
+    public static final Point MOCK = Point.builder().id("shawn").amount(1000L).refreshedAt(LocalDateTime.now()).build();
+
 
     @Builder
     public Point(String id, Long amount, LocalDateTime refreshedAt) {
@@ -33,4 +35,5 @@ public class Point {
             this.refreshedAt = refreshTime;
         }
     }
+
 }

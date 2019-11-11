@@ -6,17 +6,36 @@ server:
 
 spring:
   profiles:
-    active: local
+    active:
+      - local
+      - redis
+      - embeded-redis
 
 ---
 # Embeded redis
 spring:
   profiles: embeded-redis
-  session:
-#    store-type: redis
 
   redis:
     port: 16379
+---
+# Spring Session Data Redis
+
+spring:
+  session:
+    store-type: redis
+    redis:
+      namespace: mono:session
+
+  redis:
+    port: 6379
+    host: localhost
+
+server:
+  servlet:
+    session:
+      cookie:
+        name: POLARID
 ---
 # Local
 
