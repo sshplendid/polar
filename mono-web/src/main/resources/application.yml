@@ -36,6 +36,8 @@ server:
     session:
       cookie:
         name: POLARID
+        path: /
+        http-only: false
 ---
 # Local
 

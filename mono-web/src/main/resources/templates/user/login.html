@@ -16,9 +16,20 @@
     <div id="loginResult" th:if="${auth.id != 'NONE'}">
         <h2>로그인 결과</h2>
         <ul>
+            <li>세션 id: <span th:text="${auth.sid}" id="loginSid"></span></li>
             <li>로그인 ID: <span th:text="${auth.id}" id="loginResultId"></span></li>
             <li>로그인 시간: <span th:text="${auth.logInAt}" id="loginAt"></span></li>
-            <li>세션 id: <span th:text="${auth.sid}" id="loginSid"></span></li>
+        </ul>
+    </div>
+    <div id="others">
+        <h2>다른 서버 세션공유 테스트</h2>
+        <ul>
+            <li><input type="button" id="pingBtn" value="ping" /> </li>
+            <li><input type="button" id="apiBtn" value="call" /> </li>
+            <li><span id="otherResult">ready</span></li>
+<!--            <li>세션 id: <span th:text="${auth.sid}" id="loginSid"></span></li>-->
+<!--            <li>로그인 ID: <span th:text="${auth.id}" id="loginResultId"></span></li>-->
+<!--            <li>로그인 시간: <span th:text="${auth.logInAt}" id="loginAt"></span></li>-->
         </ul>
     </div>
 
@@ -48,8 +59,24 @@
                 console.log(err);
             });
         };
-        document.querySelector('#loginBtn').onclick = login;
-
+        var loginBtn = document.querySelector('#loginBtn');
+        if(loginBtn) {
+            loginBtn.onclick = login;
+        }
+        document.querySelector('#apiBtn').onclick = function() {
+            fetch('http://localhost:8001/session/whoami')
+            .then(res => {
+                    res.text().then(text => {
+                        document.querySelector('#otherResult').innerText = text;
+                });
+            });
+        };
+        document.querySelector('#pingBtn').onclick = function() {
+            fetch('http://localhost:8080/mono/v1/auth/ping')
+            .then(res => {
+                console.log(`ping... ${res.status}`);
+            });
+        };
     </script>
 </body>
 </html>

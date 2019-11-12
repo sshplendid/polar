@@ -24,7 +24,7 @@ public class MonoWebApplication {
     public CommandLineRunner mockData() {
         return args -> {
             Point point = Point.builder()
-                    .id("shawn")
+                    .id("홍길동")
                     .amount(123L)
                     .refreshedAt(LocalDateTime.now())
                     .build();
