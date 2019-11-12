@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+    <div th:if="${auth.id == 'NONE'}">
+        <h2>로그인</h2>
+        <ul>
+            <li>ID: <input type="text" title="id" /></li>
+            <li>PW: <input type="password" title="password" /></li>
+            <li><input id="loginBtn" type="button" value="로그인" /></li>
+        </ul>
+    </div>
+    <div id="loginResult" th:if="${auth.id != 'NONE'}">
+        <h2>로그인 결과</h2>
+        <ul>
+            <li>세션 id: <span th:text="${auth.sid}" id="loginSid"></span></li>
+            <li>로그인 ID: <span th:text="${auth.id}" id="loginResultId"></span></li>
+            <li>로그인 시간: <span th:text="${auth.logInAt}" id="loginAt"></span></li>
+        </ul>
+    </div>
+    <div id="others">
+        <h2>다른 서버 세션공유 테스트</h2>
+        <ul>
+            <li><input type="button" id="pingBtn" value="ping" /> </li>
+            <li><input type="button" id="apiBtn" value="call" /> </li>
+            <li><span id="otherResult">ready</span></li>
+<!--            <li>세션 id: <span th:text="${auth.sid}" id="loginSid"></span></li>-->
+<!--            <li>로그인 ID: <span th:text="${auth.id}" id="loginResultId"></span></li>-->
+<!--            <li>로그인 시간: <span th:text="${auth.logInAt}" id="loginAt"></span></li>-->
+        </ul>
+    </div>
+
+    <script>
+        var login = function() {
+            var id = document.querySelector("input[title='id']").value;
+            var password = document.querySelector("input[title='password']").value;
+
+            var requestbody = {id: id, password: password};
+
+            fetch("/mono/v1/auth/login", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestbody)
+            }).then(res => {
+                console.log('-> login result');
+                console.log(res);
+                res.json().then(json => {
+                    console.log('  -> JSON result');
+                    console.log(json);
+                });
+            }).catch(err => {
+                console.log('-> login failed.');
+                console.log(err);
+            });
+        };
+        var loginBtn = document.querySelector('#loginBtn');
+        if(loginBtn) {
+            loginBtn.onclick = login;
+        }
+        document.querySelector('#apiBtn').onclick = function() {
+            fetch('http://localhost:8001/session/whoami')
+            .then(res => {
+                    res.text().then(text => {
+                        document.querySelector('#otherResult').innerText = text;
+                });
+            });
+        };
+        document.querySelector('#pingBtn').onclick = function() {
+            fetch('http://localhost:8080/mono/v1/auth/ping')
+            .then(res => {
+                console.log(`ping... ${res.status}`);
+            });
+        };
+    </script>
+</body>
+</html>
