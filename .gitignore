@@ -2,6 +2,8 @@
 # Created by https://www.gitignore.io/api/git,java,macos,gradle,windows,eclipse,intellij+all
 # Edit at https://www.gitignore.io/?templates=git,java,macos,gradle,windows,eclipse,intellij+all
 
+*/docker/*
+
 ### Eclipse ###
 .metadata
 bin/
