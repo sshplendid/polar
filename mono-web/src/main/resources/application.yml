@@ -9,17 +9,16 @@ spring:
       - local
       - redis
       - embeded-redis
+
 ---
 # Embeded redis
 spring:
   profiles: embeded-redis
-
-  redis:
-    port: 16379
 ---
 # Spring Session Data Redis
 
 spring:
+  profiles: session
   session:
     store-type: redis
     redis:
