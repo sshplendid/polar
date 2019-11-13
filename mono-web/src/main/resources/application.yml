@@ -3,14 +3,12 @@
 server:
   servlet:
     context-path: /mono
-
 spring:
   profiles:
     active:
       - local
       - redis
-#      - embeded-redis
-
+      - embeded-redis
 ---
 # Embeded redis
 spring:
