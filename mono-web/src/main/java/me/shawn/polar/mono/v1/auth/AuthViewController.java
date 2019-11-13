@@ -32,6 +32,6 @@ public class AuthViewController {
 
         model.addAttribute("auth", auth);
 
-        return "/user/login";
+        return "user/login";
     }
 }

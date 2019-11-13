@@ -19,6 +19,6 @@ public class PointViewController {
 
         Point point = pointRedisRepository.findById(id).orElse(Point.MOCK);
         model.addAttribute("point", point);
-        return "/point/point";
+        return "point/point";
     }
 }
